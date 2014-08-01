@@ -218,10 +218,10 @@ class Criteria
     protected $originalDbName;
 
     /**
-     * To limit the number of rows to return.  <code>0</code> means return all
+     * To limit the number of rows to return.  <code>-1</code> means return all
      * rows.
      */
-    protected $limit = 0;
+    protected $limit = -1;
 
     /** To start the results at a row other than the first one. */
     protected $offset = 0;
@@ -297,7 +297,7 @@ class Criteria
         $this->selectQueries = array();
         $this->dbName = $this->originalDbName;
         $this->offset = 0;
-        $this->limit = 0;
+        $this->limit = -1;
         $this->aliases = array();
         $this->useTransaction = false;
         $this->ifLvlCount = false;
@@ -1560,7 +1560,7 @@ class Criteria
     {
         // merge limit
         $limit = $criteria->getLimit();
-        if (0 != $limit && 0 === $this->getLimit()) {
+        if (-1 != $limit && -1 === $this->getLimit()) {
             $this->limit = $limit;
         }
 
